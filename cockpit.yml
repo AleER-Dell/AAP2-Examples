@@ -1,6 +1,6 @@
 ---
 - name: cockpit
-  hosts: all
+  hosts: RedHat
   tasks:
   - name: Install cockpit packages 
     yum:
