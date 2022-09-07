@@ -1,5 +1,5 @@
 ---
-- name: cockpit
+- name: Disable Ctrl-Alt-Del
   hosts: RedHat
   tasks:
     - name: The x86 Ctrl-Alt-Delete key sequence must be disabled
