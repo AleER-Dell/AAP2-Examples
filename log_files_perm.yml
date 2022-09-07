@@ -1,0 +1,38 @@
+---
+- name: Disable Ctrl-Alt-Del
+  hosts: all
+  tasks:
+
+
+vars:
+    file_vars:
+     - { spath: /var/log/ctm, type: file, mode: o-w, pattern: "^.*?\\.(?:sh|fp|so|xml)$" }
+
+  tasks:
+  - name: Find files depending on REGEX pattern
+    find:
+     paths: "{{ item.spath }}"
+     file_type: "{{ item.type }}"
+     recurse: yes
+     patterns: "{{ item.pattern }}"
+     use_regex: yes
+    with_items:
+     - "{{ file_vars }}"
+    register: change_mode
+
+  - debug:
+     var: change_mode
+
+  - name: remove world writable permissions
+    file:
+     path:  "{{ item.path }}"
+     mode:  o-w
+    with_items:
+     -  "{{ change_mode.files }}"
+     
+     
+     - name: remove world writable permissions
+  file:
+    path:  "{{ item.1.path }}"
+    mode:  o-w
+  loop: "{{ change_mode.results | subelements('files') }}"
