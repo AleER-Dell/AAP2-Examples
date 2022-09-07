@@ -6,15 +6,9 @@
       systemd:
         name: ctrl-alt-del.target
         enabled: no
-      tags:
-        - high
-        - misc
     
     - name:  The x86 Ctrl-Alt-Delete key sequence must be disabled
       systemd:
         name: ctrl-alt-del.target
         masked: yes
         daemon_reload: yes
-      tags:
-        - high
-        - misc
