@@ -6,8 +6,6 @@
       systemd:
         name: ctrl-alt-del.target
         enabled: no
-      when:
-        - security_rhel7_disable_ctrl_alt_delete | bool
       tags:
         - high
         - misc
@@ -17,8 +15,6 @@
         name: ctrl-alt-del.target
         masked: yes
         daemon_reload: yes
-      when:
-        - security_rhel7_disable_ctrl_alt_delete | bool
       tags:
         - high
         - misc
