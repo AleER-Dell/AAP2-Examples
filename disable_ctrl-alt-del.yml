@@ -1,6 +1,6 @@
 ---
 - name: Disable Ctrl-Alt-Del
-  hosts: RedHat
+  hosts: all
   tasks:
     - name: The x86 Ctrl-Alt-Delete key sequence must be disabled
       systemd:
