@@ -1,20 +1,24 @@
-- name: The x86 Ctrl-Alt-Delete key sequence must be disabled
-  systemd:
-    name: ctrl-alt-del.target
-    enabled: no
-  when:
-    - security_rhel7_disable_ctrl_alt_delete | bool
-  tags:
-    - high
-    - misc
-
-- name:  The x86 Ctrl-Alt-Delete key sequence must be disabled
-  systemd:
-    name: ctrl-alt-del.target
-    masked: yes
-    daemon_reload: yes
-  when:
-    - security_rhel7_disable_ctrl_alt_delete | bool
-  tags:
-    - high
-    - misc
+---
+- name: cockpit
+  hosts: RedHat
+  tasks:
+    - name: The x86 Ctrl-Alt-Delete key sequence must be disabled
+      systemd:
+        name: ctrl-alt-del.target
+        enabled: no
+      when:
+        - security_rhel7_disable_ctrl_alt_delete | bool
+      tags:
+        - high
+        - misc
+    
+    - name:  The x86 Ctrl-Alt-Delete key sequence must be disabled
+      systemd:
+        name: ctrl-alt-del.target
+        masked: yes
+        daemon_reload: yes
+      when:
+        - security_rhel7_disable_ctrl_alt_delete | bool
+      tags:
+        - high
+        - misc
