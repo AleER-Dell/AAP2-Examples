@@ -14,9 +14,9 @@
       line: '#\1'
       backrefs: yes
       state: present
-    notify:
-    - Restart inetd
-    when:  exist_inetd.stat.exists == True
+#    notify:
+#    - Restart inetd
+#    when:  exist_inetd.stat.exists == True
 
   - name: Recursively find .rhosts in home directories
     find:
@@ -46,8 +46,8 @@
 #    loop_control:
 #      label: "{{ item.path }}"
 
-  handlers:
-  - name: Restart inetd
-    service:
-      name: inetd
-      state: restarted
+#  handlers:
+#  - name: Restart inetd
+#    service:
+#      name: inetd
+#      state: restarted
