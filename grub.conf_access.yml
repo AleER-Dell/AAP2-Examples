@@ -5,7 +5,7 @@
 
   - name: Set Permissions and Attributes to the GRUB file
     file:
-      path: /etc/grub2.cfg
+      path: /etc/grub.cfg
       mode: 700
       attr: '+i'
     register: output  
