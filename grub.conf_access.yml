@@ -8,8 +8,8 @@
       path: /etc/grub.conf
       mode: 700
       attr: '+i'
-    register: output  
+ #   register: output  
   
-  - name: Print a debug message
-    debug:
-      msg: "{{ output }}"
+ # - name: Print a debug message
+ #   debug:
+ #     msg: "{{ output }}"
