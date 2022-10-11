@@ -5,10 +5,9 @@
 
   - name: Set Permissions and Attributes to the GRUB file
     file:
-      path: /boot/efi/EFI/redhat/grub.cfg
-#      path: /etc/grub2.cfg
+      path: /etc/grub2.cfg
       mode: 700
-#      attr: '+i'
+      attr: '+i'
     register: output  
   
   - name: Print a debug message
