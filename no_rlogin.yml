@@ -14,9 +14,9 @@
       line: '#\1'
       backrefs: yes
       state: present
-#    notify:
-#    - Restart inetd
-#    when:  exist_inetd.stat.exists == True
+    notify:
+    - Restart inetd
+    when:  exist_inetd.stat.exists == True
 
   - name: Recursively find .rhosts in home directories
     find:
