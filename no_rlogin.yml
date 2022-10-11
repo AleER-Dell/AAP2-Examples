@@ -33,9 +33,9 @@
       state:  absent
     register: root_rhosts
 
-  - name: Print a debug message
-    debug:
-      msg: "{{ root_rhosts }}"
+#  - name: Print a debug message
+#    debug:
+#      msg: "{{ root_rhosts }}"
 
   - name: Delete all .rhosts in users home directories
     file:
