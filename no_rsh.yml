@@ -1,0 +1,26 @@
+---
+- hosts: all
+  gather_facts: False
+  tasks:
+
+  - name: Identify if the server use inetd
+    stat:
+      path: /etc/inetd.conf
+    register: exist_inetd
+
+  - name: Comment the 'rsh' line in /etc/inetd.conf
+    lineinfile:
+      path: '/etc/inetd.conf'
+      regexp: '(?i)^(rsh.*)'
+      line: '#\1'
+      backrefs: yes
+      state: present
+    notify:
+    - Restart inetd
+    when:  exist_inetd.stat.exists == True
+
+  handlers:
+  - name: Restart inetd
+    service:
+      name: inetd
+      state: restarted
