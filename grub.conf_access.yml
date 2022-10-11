@@ -8,7 +8,7 @@
       path: /boot/efi/EFI/redhat/grub.cfg
 #      path: /etc/grub2.cfg
       mode: 700
-      attr: +i
+      attr: '+i'
     register: output  
   
   - name: Print a debug message
