@@ -31,11 +31,11 @@
     file:
       path: "/root/.rhosts"
       state:  absent
-#    register: root_rhosts
+    register: root_rhosts
 
-#  - name: Print a debug message
-#    debug:
-#      msg: "{{ root_rhosts }}"
+  - name: Print a debug message
+    debug:
+      msg: "{{ root_rhosts }}"
 
   - name: Delete all .rhosts in users home directories
     file:
@@ -46,8 +46,8 @@
 #    loop_control:
 #      label: "{{ item.path }}"
 
-#  handlers:
-#  - name: Restart inetd
-#    service:
-#      name: inetd
-#      state: restarted
+  handlers:
+  - name: Restart inetd
+    service:
+      name: inetd
+      state: restarted
