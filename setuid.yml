@@ -1,0 +1,19 @@
+---
+- hosts: all
+  gather_facts: False
+  tasks:
+
+   - name: Recursively find setuid and setgid files
+    find:
+      paths: /
+      file_type: file
+      recurse: true
+      hidden: true
+    register: users_rhosts
+
+
+  - name: Remove all setuid and setgid permissions 
+    file:
+      path: "{{ item.path }}"
+#      mode: u-g,g-s
+    with_items: " {{ users_rhosts.files.mode }} "
