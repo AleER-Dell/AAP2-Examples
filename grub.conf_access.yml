@@ -1,0 +1,15 @@
+---
+- hosts: all
+  gather_facts: False
+  tasks:
+
+   - name: Set Permissions and Attributes to the GRUB file
+  file:
+    path: /etc/grub.conf
+    mode: 700
+    attr: +i
+  register: output  
+  
+  - name: Print a debug message
+    debug:
+      msg: "{{ output }}"
