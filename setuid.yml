@@ -3,17 +3,15 @@
   gather_facts: False
   tasks:
 
-   - name: Recursively find setuid and setgid files
-    find:
-      paths: /
-      file_type: file
-      recurse: true
-      hidden: true
-    register: users_rhosts
+  - name: Find binaries with suid/sgid set
+    shell: find /tmp -xdev \( -perm -4000 -o -perm -2000 \) -type f ! -path '/proc/*' -print 2>/dev/null
+    register: sbit_binaries
+    changed_when: false
 
-
-  - name: Remove all setuid and setgid permissions 
+  - name: Remove suid/sgid bit from all binaries
     file:
-      path: "{{ item.path }}"
-#      mode: u-g,g-s
-    with_items: " {{ users_rhosts.files.mode }} "
+      path: '{{ item }}'
+      mode: 'a-s'
+      state: 'file'
+      follow: 'yes'
+    with_items: " {{ sbit_binaries.stdout_lines }} "
