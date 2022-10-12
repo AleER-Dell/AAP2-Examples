@@ -1,0 +1,81 @@
+---
+- hosts: satellite
+#- hosts: all
+  gather_facts: False
+  tasks:
+
+  - name: Files with an optional mode (400)
+    file:
+      path: "{{ item.path }}"
+      mode: "{{ item.mode | default(omit) }}"
+      owner: root
+      group: root
+    loop:
+      - path: /etc/crontab
+        mode: "400"
+
+  - name: Files with an optional mode (444)
+    file:
+      path: "{{ item.path }}"
+      mode: "{{ item.mode | default(omit) }}"
+      owner: root
+      group: root
+    loop:
+      - path: /etc/bashrc
+      - path: /etc/csh.cshrc
+      - path: /etc/csh.login
+        mode: "444"
+
+  - name: Files with an optional mode (644)
+    file:
+      path: "{{ item.path }}"
+      mode: "{{ item.mode | default(omit) }}"
+      owner: root
+      group: root
+    loop:
+      - path: /usr/share/man
+      - path: /usr/share/doc
+      - path: /etc/exports
+      - path: /etc/fstab
+      - path: /etc/group
+        mode: "644"
+
+  - name: Files with an optional mode (600)
+    file:
+      path: "{{ item.path }}"
+      mode: "{{ item.mode | default(omit) }}"
+      owner: root
+      group: root
+    loop:
+      - path: /boot/grub2/grub.conf
+      - path: /var/log/messages
+      - path: /var/log/secure
+      - path: /var/log/dmesg
+      - path: /var/log/boot.log
+      - path: /var/log/lastlog
+      - path: /var/log/rpmpkgs
+        mode: "600"
+
+  - name: Files with an optional mode (700)
+    file:
+      path: "{{ item.path }}"
+      mode: "{{ item.mode | default(omit) }}"
+      owner: root
+      group: root
+    loop:
+      - path: /etc/cron.hourly
+      - path: /etc/cron.daily
+      - path: /etc/cron.weekly
+      - path: /etc/cron.monthly
+      - path: /etc/rc.d/rc.sysinit
+        mode: "700"
+
+  - name: Files with an optional mode (755)
+    file:
+      path: "{{ item.path }}"
+      mode: "{{ item.mode | default(omit) }}"
+      owner: root
+      group: root
+    loop:
+      - path: /var/log
+        mode: "755"
