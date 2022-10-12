@@ -1,6 +1,6 @@
 ---
-- hosts: satellite
-#- hosts: all
+
+- hosts: all
   gather_facts: False
   tasks:
 
