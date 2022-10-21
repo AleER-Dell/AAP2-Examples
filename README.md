@@ -2,6 +2,7 @@
 # Ansible Automation Platform Examples
 
 This repository contains demo playbooks and roles used as Demo for Dell Technologies/Red Hat LATAM Customers
+
 Based in [Ansible Automation Workshops](https://github.com/ansible/workshops/)
 
 
